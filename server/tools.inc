@@ -20,5 +20,6 @@
 
 			echo "</tr>\n";
 		}
+		echo "</table>\n";
 	}
 ?>
