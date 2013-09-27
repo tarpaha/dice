@@ -3,6 +3,7 @@
 import uuid
 import random
 import time
+import urllib, urllib2
 
 def get_mac():
 	return '%x' % uuid.getnode()
@@ -22,9 +23,6 @@ def play_games(games_count):
 			colin_wins_count += 1
 	return [int(1000 * (time.time() - start_time)), peter_wins_count, colin_wins_count]
 
-def send(result):
-	print result
-
 def simulate(uuid, target_task_time):
 	games_count = 1000
 	profiling = True
@@ -36,4 +34,8 @@ def simulate(uuid, target_task_time):
 			send([uuid, games_count] + result)
 		games_count = int(games_count * target_task_time / result[0])
 
-simulate(get_mac(), 2000)
+def send(result):
+	params = urllib.urlencode(dict(zip(['uuid', 'count', 'time', 'peter', 'colin'], result)))
+	print urllib2.urlopen("http://rexxar.ru/dice/commit.php?" + params).read()
+
+simulate(get_mac(), 1000)
