@@ -36,6 +36,10 @@ def simulate(uuid, target_task_time):
 
 def send(result):
 	params = urllib.urlencode(dict(zip(['uuid', 'count', 'time', 'peter', 'colin'], result)))
-	print urllib2.urlopen("http://rexxar.ru/dice/commit.php?" + params).read()
+	status = urllib2.urlopen("http://rexxar.ru/dice/commit.php?" + params).read()
+	if status == "ok":
+		print "Successfully sent", result[1], "rolls"
+	else:
+		print "Error sending data"
 
-simulate(get_mac(), 1000)
+simulate(get_mac(), 5000)
