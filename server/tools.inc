@@ -1,9 +1,10 @@
 <?php
-	function show_table($sql_query_result)
+	function show_table($sql_query_result, $expand)
 	{
 		$fields_num = mysql_num_fields($sql_query_result);
 
-		echo "<table border='1' width='100%'><tr>";
+		$width_param = $expand ? "width='100%'" : "";
+		echo "<table border='1' " . $width_param . "><tr>";
 		for($i=0; $i<$fields_num; $i++)
 		{
 			$field = mysql_fetch_field($sql_query_result);
