@@ -3,7 +3,8 @@
 	include "tools.inc";
 	connect();
 
-	echo "Solving <a href='http://projecteuler.net/problem=205'>http://projecteuler.net/problem=205</a><br><br>\n";
+	echo "Solving <a href='http://projecteuler.net/problem=205'>http://projecteuler.net/problem=205</a><br>\n";
+	echo "Source code <a href='https://github.com/tarpaha/dice'>https://github.com/tarpaha/dice</a><br><br>\n";
 
 	echo "Result:\n";
 	$result = mysql_query("SELECT sum(peter)/sum(count) as peter_win_probability from dice");
